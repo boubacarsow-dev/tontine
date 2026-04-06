@@ -22,6 +22,15 @@ async function handleContribution(req,res,headers) {
     if(req.method==='POST'&& req.url ==='/contributions'){
         try {
             const userData = await parser(req);
+                //verif pour voir si un user a deja paye donc cotisa existe
+                const verification = await db.query(`select * FROM cotisation WHERE user_id =? AND id_cycle=?`);
+                const [dejaPaye] = await db.query(verification, [userData.id_cycle, userData.user_id]);
+
+                if(dejaPaye.length>0){
+                    res.writeHead(400,headers);
+                    res.end(JSON.stringify({message:"paiement refuse, ce membre a deja cotise pour ce cycle"}));
+                    return
+                }
         await db.query(`INSERT INTO cotisation(montant,user_id,id_cycle)   VALUES (?,?,?)`,
             [userData.montant,userData.user_id,userData.id_cycle]
         );

@@ -65,10 +65,18 @@ if (req.method === 'DELETE' && req.url.startsWith('/cycles/')) {
 
  if (req.method === 'PUT' && req.url.startsWith('/cycles/')) {
     try {
+
         const partiUrl = req.url.split('/');
         const idUrl = parseInt(partiUrl[2]);
         const userData = await parser(req);
-
+        const [participants] = await db.query(`SELECT COUNT(user_id) AS total FROM tontines_members`);
+        const total_attendus = participants[0].total;
+        const [nb_paiements] = await db.query(`SELECT * from cotisation WHERE id_cycle =?`,[idUrl]);
+        const total_a_paye = nb_paiements.length
+        if(total_attendus>total_a_paye){
+            res.writeHead(400,headers);
+            return res.end(JSON.stringify({message:"tout le monde n'a pas paye"}))
+        }
         // On peut modifier le nom, le statut ou le bénéficiaire (le gagnant)
         const [resultat] = await db.query(
             `UPDATE cycles 
