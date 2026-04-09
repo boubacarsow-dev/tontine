@@ -5,7 +5,7 @@ const membersRoutes = require('./routes/members');
 const groupsTontines = require('./routes/groups');
 const cycles = require('./routes/cycles');
 const handleContribution = require('./routes/contributions');
-
+const handleStats = require('./routes/statistiques');
 // Test de connexion à la base
 async function testerConnexion() {
     try {
@@ -58,7 +58,14 @@ const server = http.createServer(async function(req, res) {
         await handleContribution(req, res, headers);
         return;
     }
+    //await handleStats(req, res, headers);
+        // pour les stats
+         if (req.url.startsWith('/statistiques')) {
+            await handleStats(req, res, headers);
+        return;
+    }
 
+    
     // Cas particulier /users (on  le garder séparé)
     if (req.url === '/users') {
         if (req.method === 'GET') {

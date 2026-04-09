@@ -77,7 +77,29 @@ if (req.method === 'DELETE' && req.url.startsWith('/cycles/')) {
             res.writeHead(400,headers);
             return res.end(JSON.stringify({message:"tout le monde n'a pas paye"}))
         }
-        // On peut modifier le nom, le statut ou le bénéficiaire (le gagnant)
+
+        if (userData.id_beneficiaire) {
+            
+            // Est-ce que ce membre existe vraiment ?
+            const [user_existe] = await db.query(
+                `SELECT user_id FROM tontines_members WHERE user_id = ?`, 
+                [userData.id_beneficiaire]
+            );
+            
+            if (user_existe.length === 0) {
+                res.writeHead(400, headers);
+                return res.end(JSON.stringify({ message: "Erreur : Ce membre n'existe pas dans la base de données." }));
+            }
+            const [deja_gagne] = await db.query(
+                `SELECT id_cycle FROM cycles WHERE id_beneficiaire = ? AND id_cycle != ?`,
+                [userData.id_beneficiaire, idUrl]
+            );
+
+            if (deja_gagne.length > 0) {
+                res.writeHead(400, headers);
+                return res.end(JSON.stringify({ message: "Erreur : Ce membre a déjà bénéficié de la tontine dans un autre cycle." }));
+            }
+        }
         const [resultat] = await db.query(
             `UPDATE cycles 
              SET nom = IFNULL(?, nom), 
@@ -86,7 +108,7 @@ if (req.method === 'DELETE' && req.url.startsWith('/cycles/')) {
              WHERE id_cycle = ?`,
             [userData.nom || null, userData.statut || null, userData.id_beneficiaire || null, idUrl]
         );
-
+        
         if (resultat.affectedRows === 0) {
             res.writeHead(404, headers);
             return res.end(JSON.stringify({ message: "Cycle introuvable" }));
