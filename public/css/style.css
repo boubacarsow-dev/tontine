@@ -1,0 +1,63 @@
+:root {
+    /*couleur*/
+  --color-primary: #3498DB; 
+  --color-primary-hover: #2980B9;  /* Bleu plus foncé (Au survol des boutons) 
+
+  /* 
+     background
+     */
+  --bg-app: #F4F7F6;               /* Gris très clair Le fond global de la page */
+  --bg-sidebar: #2C3E50;           /* Bleu nuit sombre Le menu à gauche */
+  --bg-sidebar-hover: #34495E;     /* Bleu nuit un peu plus clair (Survol dans le menu */
+  --bg-card: #FFFFFF;              /* Blanc pur Fond du tableau et des cartes */
+
+  /*
+     COULEURS DE TEXTE */
+  --text-dark: #1F2937;            /* Gris très foncé (Titres "Gestion des Membres" */
+  --text-main: #374151;            /* Gris foncé Texte normal, noms dans le tableau*/
+  --text-muted: #6B7280;           /* Gris moyen En-têtes du tableau: ID, NOM */
+  --text-sidebar: #D1D5DB;         /* Gris clair texte du menu) */
+  --text-white: #FFFFFF;           /* Blanc Texte dans le bouton bleu */
+
+  /* 
+      BADGES DE STATUT 
+  --badge-active-bg: #E1EFFE;      /* Bleu très clair (Fond badge Actif */
+  --badge-active-text: #1E429F;    /* bleu prof Texte badge Actif */
+  --badge-inactive-bg: #F3F4F6;    /* Fond badge Inactif*/
+  --badge-inactive-text: #4B5563;  /* Texte badge Inactif) */
+
+  /* 
+     BORDURES & LIGNES
+      */
+  --border-light: #E5E7EB;         /* ma gris de Lignes qui séparent les membres */
+  --border-sidebar: #1F2C38;       /* Bordure sombre Sous le logo Code Smart) */
+
+  /* 
+     ombres et arrond..
+      */
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  
+  --radius-sm: 6px;                /* pour mes Champs de recherche, boutons) */
+  --radius-md: 12px;               /* Arrondi moyen pour ma grande carte blanche du tableau */
+  --radius-pill: 9999px;           /* Arrondi total pour mes badges de statut */
+
+  /* 
+      TYPO
+     */
+  --font-main: 'Inter', 'Segoe UI', Roboto, sans-serif;
+}
+
+/* --- RESET DE BASE POUR APPLIQUER LA POLICE ET LE FOND  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-main);
+}
+
+body {
+    background-color: var(--bg-app);
+    color: var(--text-main);
+}
+
+/* page members */
