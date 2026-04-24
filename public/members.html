@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Membres - Tontine Manager</title>
+    <link rel="stylesheet" href="/public/css/style.css"> 
+</head>
+<body class="dashboard-layout">
+
+    <div class="overlay" id="bg-add-member"></div>
+    
+    <div class="side-panel" id="panel-add-member">
+        <div class="panel-header">
+            <h2>Nouveau Membre</h2>
+            <button class="btn-close" id="btn-close-panel">✕</button>
+        </div>
+        
+        <form class="panel-form" id="form-add-member">
+            <div class="form-group">
+                <label for="nom">Nom Complet</label>
+                <input type="text" id="nom" name="nom" placeholder="Ex: Jean-Baptiste Koffi" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telephone">Numéro de Téléphone</label>
+                <input type="tel" id="telephone" name="telephone" placeholder="+225 07 12 34 56 78" required>
+            </div>
+
+            <div class="panel-footer">
+                <button type="button" class="btn-secondary" id="btn-cancel">Annuler</button>
+                <button type="submit" class="btn-primary" id="submit">Ajouter le membre</button>
+            </div>
+        </form>
+    </div>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>TONTINE MANAGER 💡</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/public/index.html">Dashboard</a></li>
+                <li><a href="/public/members.html" class="active">Membres</a></li>
+                <li><a href="/public/cycles.html">Cycles</a></li>
+                <li><a href="/public/groups.html">Groupes</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="page-header">
+            <div class="header-title">
+                <button id="btn-menu-mobile" class="menu-toggle">☰</button>
+                <div>
+                    <h1>Gestion des Membres</h1>
+                    <p>Gérez les profils, statuts et informations de contact...</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="search-add">
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Rechercher un membre...">
+            </div>
+            <button class="btn-primary" id="btn-add-member">+ Ajouter un membre</button>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOM COMPLET</th>
+                        <th>TELEPHONE</th>
+                        <th>DATE INSCRIPTION</th>
+                        <th>STATUT</th>
+                        <th>ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody class="list-members">
+                    </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script type="module" src="/public/js/members.js"></script>
+</body>
+</html>

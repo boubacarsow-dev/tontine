@@ -1,7 +1,7 @@
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     nom varchar(100) NOT NULL,
-    telephone varchar(20) unique NOT NULL, -- Corrigé en VARCHAR
+    telephone varchar(20) unique NOT NULL, -- C
     date_rejoint DATE,
     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -20,7 +20,6 @@ CREATE TABLE tontines_members (
     date_integration TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     ordre_beneficiaire INT NOT NULL,
     PRIMARY key(id_tontine, user_id),
-    -- Syntaxe corrigée pour les FOREIGN KEYS
     FOREIGN KEY (id_tontine) REFERENCES tontines(id_tontine) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
@@ -34,7 +33,6 @@ CREATE TABLE cycles (
     date_ouverture date,
     date_cloture date,
     PRIMARY KEY(id_cycle),
-    -- Syntaxe corrigée et variables alignées
     FOREIGN KEY (id_tontine) REFERENCES tontines(id_tontine) ON DELETE CASCADE,
     FOREIGN KEY (id_beneficiaire) REFERENCES users(user_id) ON DELETE CASCADE
 );

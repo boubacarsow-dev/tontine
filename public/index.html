@@ -9,7 +9,7 @@
 <body class="dashboard-layout">
     <aside class="sidebar">
         <div class="logo">
-            <h2>TONTINE MANAGER 💡</h2>
+            <h2>TONTINE MANAGER </h2>
         </div>
         <!-- navigation -->
          <nav>
@@ -26,15 +26,14 @@
      <main class="main-content">
         <header class="page-header">
             <div class="header-title">
-                <h1>Gestion des Membres</h1>
-                <p>Gérez les profils, statuts et informations de contact de tous les membres actifs</p>
+                <button id="btn-menu-mobile" class="menu-toggle">☰</button>
+                
+                <div>
+                    <h1>Gestion des Membres</h1>
+                    <p>Gérez les profils, statuts et informations de contact...</p>
+                </div>
             </div>
-            <!-- profil user -->
-             <div class="user-profil">
-                <span>Admin Boubacar</span>
-                <div class="avatar"></div>
-             </div>
-        </header>
+            </header>
         <!-- recherche et add un membre -->
          <div class="search-add">
             <div class="search-box">
@@ -85,9 +84,11 @@
 
                 <div class="panel-footer">
                     <button type="button" class="btn-secondary" id="btn-cancel">Annuler</button>
-                    <button type="submit" class="btn-primary">Ajouter le membre</button>
+                    <button type="submit" class="btn-primary" id="submit">Ajouter le membre</button>
                 </div>
             </form>
         </div>
+      
 </body>
+<script type="module" src="/public/js/members.js"></script>
 </html>

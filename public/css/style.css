@@ -1,53 +1,28 @@
 :root {
-    /*couleur*/
   --color-primary: #3498DB; 
-  --color-primary-hover: #2980B9;  /* Bleu plus foncé (Au survol des boutons) 
-
-  /* 
-     background
-     */
-  --bg-app: #F4F7F6;               /* Gris très clair Le fond global de la page */
-  --bg-sidebar: #2C3E50;           /* Bleu nuit sombre Le menu à gauche */
-  --bg-sidebar-hover: #34495E;     /* Bleu nuit un peu plus clair (Survol dans le menu */
-  --bg-card: #FFFFFF;              /* Blanc pur Fond du tableau et des cartes */
-
-  /*
-     COULEURS DE TEXTE */
-  --text-dark: #1F2937;            /* Gris très foncé (Titres "Gestion des Membres" */
-  --text-main: #374151;            /* Gris foncé Texte normal, noms dans le tableau*/
-  --text-muted: #6B7280;           /* Gris moyen En-têtes du tableau: ID, NOM */
-  --text-sidebar: #D1D5DB;         /* Gris clair texte du menu) */
-  --text-white: #FFFFFF;           /* Blanc Texte dans le bouton bleu */
-
-  /* 
-      BADGES DE STATUT 
-  --badge-active-bg: #E1EFFE;      /* Bleu très clair (Fond badge Actif */
-  --badge-active-text: #1E429F;    /* bleu prof Texte badge Actif */
-  --badge-inactive-bg: #F3F4F6;    /* Fond badge Inactif*/
-  --badge-inactive-text: #4B5563;  /* Texte badge Inactif) */
-
-  /* 
-     BORDURES & LIGNES
-      */
-  --border-light: #E5E7EB;         /* ma gris de Lignes qui séparent les membres */
-  --border-sidebar: #1F2C38;       /* Bordure sombre Sous le logo Code Smart) */
-
-  /* 
-     ombres et arrond..
-      */
+  --color-primary-hover: #2980B9;  
+  --bg-app: #F4F7F6;               
+  --bg-sidebar: #2C3E50;           
+  --bg-sidebar-hover: #34495E;     
+  --bg-card: #FFFFFF;              
+  --text-dark: #1F2937;            
+  --text-main: #374151;            
+  --text-muted: #6B7280;           
+  --text-sidebar: #D1D5DB;         
+  --text-white: #FFFFFF;           
+  --badge-active-bg: #E1EFFE;      
+  --badge-active-text: #1E429F;    
+  --badge-inactive-bg: #F3F4F6;    
+  --badge-inactive-text: #4B5563;  
+  --border-light: #E5E7EB;         
+  --border-sidebar: #1F2C38;       
   --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  
-  --radius-sm: 6px;                /* pour mes Champs de recherche, boutons) */
-  --radius-md: 12px;               /* Arrondi moyen pour ma grande carte blanche du tableau */
-  --radius-pill: 9999px;           /* Arrondi total pour mes badges de statut */
-
-  /* 
-      TYPO
-     */
+  --radius-sm: 6px;                
+  --radius-md: 12px;               
+  --radius-pill: 9999px;           
   --font-main: 'Inter', 'Segoe UI', Roboto, sans-serif;
 }
 
-/* --- RESET DE BASE POUR APPLIQUER LA POLICE ET LE FOND  */
 * {
     margin: 0;
     padding: 0;
@@ -60,4 +35,311 @@ body {
     color: var(--text-main);
 }
 
-/* page members */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 900;
+   
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease-in-out;
+}
+
+.dashboard-layout {
+    display: grid;
+    grid-template-rows: 100vh;
+    grid-template-columns: 250px 1fr;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar {
+    background-color: var(--bg-sidebar);
+    color: var(--text-sidebar);
+    display: flex;
+    flex-direction: column;
+    grid-column: 1/2;
+    height: 100%;
+}
+
+.logo {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-sidebar);
+}
+
+nav ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+nav a {
+    color: var(--text-sidebar);
+    text-decoration: none;
+    display: block;
+    padding: 15px 20px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background-color: var(--bg-sidebar-hover);
+    color: var(--text-white);
+    border-left: 4px solid var(--color-primary);
+}
+
+.main-content {
+    grid-column: 2/3;
+    overflow-y: auto;
+    background-color: var(--bg-app);
+    padding: 40px;
+    position: relative;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 40px;
+}
+
+.header-title h1 {
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+
+.header-title p {
+    color: var(--text-muted);
+}
+
+.search-add {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-add input {
+    padding: 10px 14px;
+    width: 250px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-light);
+    background-color: var(--bg-card);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--text-white);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.table-container {
+    background-color: var(--bg-card);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    padding: 20px;
+}
+
+.data-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.data-table th, .data-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.data-table th {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.badge-active {
+    background-color: var(--badge-active-bg);
+    color: var(--badge-active-text);
+    padding: 4px 8px;
+    border-radius: var(--radius-pill);
+    font-size: 12px;
+}
+
+.dark-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 900;
+    transition: 0.3s ease-in-out;
+}
+
+.dark-background.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.side-panel {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 400px;
+    height: 100vh;
+    background-color: var(--bg-card);
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: right 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-panel.active {
+    right: 0;
+}
+
+
+.panel-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.panel-form {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: var(--text-dark);
+    font-weight: bold;
+}
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: var(--color-primary);
+}
+
+.panel-footer {
+    padding: 20px;
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-secondary {
+    padding: 10px 15px;
+    background: transparent;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+/* Le bouton hamburger caché sur ordinateur */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--text-dark);
+    margin-right: 15px;
+}
+
+.header-title {
+    display: flex;  
+    align-items: center;
+}
+
+/* responsive mobile */
+@media (max-width: 768px) {
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -250px; 
+        width: 250px;
+        height: 100vh;
+        z-index: 1000; 
+        transition: left 0.3s ease-in-out; 
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+    .side-panel{
+        width: 100%;
+    }
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding-bottom: 20px;
+    }
+
+    .search-add {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .search-add input,
+    .btn-primary {
+        width: 100%;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    /*  */
+    .menu-toggle {
+        display: block; 
+    }
+}
