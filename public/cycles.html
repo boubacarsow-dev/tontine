@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Boxicons pour les icônes -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <title>Gestion des Cycles - Tontine Manager</title>
+</head>
+<body class="dashboard-layout">
+
+    <!-- Voile d'arrière plan -->
+    <div class="overlay" id="bg-add-cycle"></div>
+    
+    <!-- Panneau Latéral (Ajout / Modification) -->
+    <div class="side-panel" id="panel-add-cycle">
+        <div class="panel-header">
+            <h2>Nouveau Cycle</h2>
+            <button class="btn-close" id="btn-close-panel">✕</button>
+        </div>
+        
+        <form class="panel-form" id="form-add-cycle">
+            <div class="form-group">
+                <label for="nom">Nom du Cycle</label>
+                <input type="text" id="nom" name="nom" placeholder="Ex: Tour de Janvier 2026" required>
+            </div>
+
+            <div class="form-group">
+                <label for="id_tontine">Sélectionner la Tontine</label>
+                <!-- Ce select sera rempli par le Javascript -->
+                <select id="id_tontine" name="id_tontine" required>
+                    <option value="">-- Choisir une tontine --</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="statut">Statut</label>
+                <select id="statut" name="statut">
+                    <option value="ouvert">Ouvert</option>
+                    <option value="ferme">Fermé</option>
+                </select>
+            </div>
+
+            <!-- On cache le bénéficiaire par défaut à la création, on le montrera à la modification -->
+            <div class="form-group" id="group-beneficiaire" style="display: none;">
+                <label for="id_beneficiaire">Attribuer un Bénéficiaire (Gagnant)</label>
+                <!-- Ce select sera rempli par le Javascript avec la liste des membres -->
+                <select id="id_beneficiaire" name="id_beneficiaire">
+                    <option value=""> Aucun bénéficiaire pour le moment </option>
+                </select>
+            </div>
+
+            <div class="panel-footer">
+                <button type="button" class="btn-secondary" id="btn-cancel">Annuler</button>
+                <button type="submit" class="btn-primary" id="submit">Créer le cycle</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Barre de navigation latérale -->
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>TONTINE MANAGER 💡</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/public/index.html">Dashboard</a></li>
+                <li><a href="/public/members.html">Membres</a></li>
+                <li><a href="/public/cycles.html" class="active">Cycles</a></li>
+                <li><a href="/public/groups.html">Groupes</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Contenu Principal -->
+    <main class="main-content">
+        <header class="page-header">
+            <div class="header-title">
+                <button id="btn-menu-mobile" class="menu-toggle"><i class='bx bx-menu'></i></button>
+                <div>
+                    <h1>Gestion des Cycles</h1>
+                    <p>Gérez les tours de tontine, les statuts et les bénéficiaires...</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="search-add">
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Rechercher un cycle...">
+            </div>
+            <button class="btn-primary" id="btn-add-cycle">+ Créer un cycle</button>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOM DU CYCLE</th>
+                        <th>TONTINE</th>
+                        <th>BÉNÉFICIAIRE</th>
+                        <th>STATUT</th>
+                        <th>ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody class="list-cycles">
+                    <!-- Les cycles seront injectés ici par cycles.js -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Script spécifique aux cycles -->
+    <script type="module" src="/public/js/cycles.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <title>Gestion des Groupes - Tontine Manager</title>
+</head>
+<body class="dashboard-layout">
+
+    <div class="overlay" id="bg-add-group"></div>
+    
+    <div class="side-panel" id="panel-add-group">
+        <div class="panel-header">
+            <h2>Nouveau Groupe (Tontine)</h2>
+            <button class="btn-close" id="btn-close-panel">✕</button>
+        </div>
+        
+        <form class="panel-form" id="form-add-group">
+            <div class="form-group">
+                <label for="nom">Nom de la Tontine</label>
+                <input type="text" id="nom" name="nom" placeholder="Ex: Tontine des Devs" required>
+            </div>
+
+            <div class="form-group">
+                <label for="montant">Montant de la cotisation (FCFA)</label>
+                <input type="number" id="montant" name="montant" placeholder="Ex: 10000" required>
+            </div>
+
+            <div class="form-group">
+                <label for="frequence">Fréquence de paiement</label>
+                <select id="frequence" name="frequence" required>
+                    <option value="journaliere">Journalière</option>
+                    <option value="hebdomadaire">Hebdomadaire</option>
+                    <option value="mensuelle" selected>Mensuelle</option>
+                </select>
+            </div>
+
+            <div class="panel-footer">
+                <button type="button" class="btn-secondary" id="btn-cancel">Annuler</button>
+                <button type="submit" class="btn-primary" id="submit">Créer le groupe</button>
+            </div>
+        </form>
+    </div>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>TONTINE MANAGER 💡</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/public/index.html">Dashboard</a></li>
+                <li><a href="/public/members.html">Membres</a></li>
+                <li><a href="/public/cycles.html">Cycles</a></li>
+                <li><a href="/public/groups.html" class="active">Groupes</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="page-header">
+            <div class="header-title">
+                <button id="btn-menu-mobile" class="menu-toggle"><i class='bx bx-menu'></i></button>
+                <div>
+                    <h1>Gestion des Groupes</h1>
+                    <p>Créez vos tontines, définissez les montants et les fréquences...</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="search-add">
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Rechercher un groupe...">
+            </div>
+            <button class="btn-primary" id="btn-add-group">+ Créer un groupe</button>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOM DE LA TONTINE</th>
+                        <th>MONTANT</th>
+                        <th>FRÉQUENCE</th>
+                        <th>ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody class="list-groups">
+                    </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script type="module" src="/public/js/groups.js"></script>
+</body>
+</html>
