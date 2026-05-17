@@ -40,7 +40,7 @@ function toggle() {
 //
 
 btn_add_cycle.addEventListener('click', ()=>{
- 
+  
     nom.value = '';
     statut.value = 'ouvert';
     id_tontine.value = '';
