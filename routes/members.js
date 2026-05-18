@@ -38,6 +38,24 @@ async function handleMembers(req, res, headers) {
         return;
     }
 
+    // petite route pour add dans tontines members
+     if(req.method === 'POST' && req.url === '/members/add-to-group'){
+        try {
+            const userData = await parser(req);
+            await db.query(
+                
+                 ` INSERT INTO tontines_members (id_tontine, user_id, ordre_beneficiaire) VALUES (?,?,?) `,
+                [userData.id_tontine, userData.user_id, userData.ordre_beneficiaire]
+            );
+
+           res.writeHead(201, headers);
+            res.end(JSON.stringify({ message: "Membre ajouté avec succès" })); 
+        } catch (error) {
+            res.writeHead(400, headers);
+            res.end(JSON.stringify({ erreur: "Impossible d'ajouter : ce membre est déjà dans la tontine ou les données sont invalides." }));
+        } return
+     }
+
     // routes DELETE
     if (req.method === 'DELETE' && req.url.startsWith('/members/')) {
         try {
