@@ -61,42 +61,94 @@ async function handleGroups(req,res,headers) {
             return;
         }
 
+        //route pour modif 
         //route pour modif PUT
-        if(req.url.startsWith('/groups/') && req.method ==='PUT'){
+        if(req.url.startsWith('/groups/') && req.method === 'PUT'){
             try {
                 const partiUrl = req.url.split('/');
-                             let idUrl = parseInt(partiUrl[2]);
-                             const userData = await parser(req);
-                          if(isNaN(idUrl)){
-                             idUrl = parseInt(userData.id_tontine)
-                          }  
-                          if(!idUrl || isNaN(idUrl)){
-                            res.writeHead(400, headers);
-                            return res.end(JSON.stringify({ erreur: "ID du groupe manquant dans l'URL ou le corps de la requête" }))
-                          }
-                        const [resultat] = await db.query(`
-                             UPDATE tontines 
-     SET nom = IFNULL(?, nom), 
-         montant = IFNULL(?, montant), 
-         frequence = IFNULL(?, frequence) 
-     WHERE id_tontine = ?`,
-    [userData.nom || null, userData.montant || null, userData.frequence || null, idUrl]
-                            );
-                     if(resultat.affectedRows === 0){
-                        res.writeHead(404, headers);
-                 res.end(JSON.stringify({ message: "Impossible de modifier : le groupe est introuvable" }))
-                     return
-            }
-                        res.writeHead(200,headers);
-                    res.end(JSON.stringify({message:`${userData.nom} a ete modifie`, idUrl}))
+                let idUrl = parseInt(partiUrl[2]);
+                const userData = await parser(req);
+                if(isNaN(idUrl)){
+                    idUrl = parseInt(userData.id_tontine)
+                }  
+                if(!idUrl || isNaN(idUrl)){
+                    res.writeHead(400, headers);
+                    return res.end(JSON.stringify({ erreur: "ID du groupe manquant" }))
+                }
+                const [resultat] = await db.query(`
+                    UPDATE tontines 
+                    SET nom = IFNULL(?, nom), 
+                        montant = IFNULL(?, montant), 
+                        frequence = IFNULL(?, frequence) 
+                    WHERE id_tontine = ?`,
+                    [userData.nom || null, userData.montant || null, userData.frequence || null, idUrl]
+                );
+                if(resultat.affectedRows === 0){
+                    res.writeHead(404, headers);
+                    return res.end(JSON.stringify({ message: "Groupe introuvable" }))
+                }
+                res.writeHead(200, headers);
+                res.end(JSON.stringify({message: `${userData.nom} a ete modifie`, idUrl}))
             } catch (error) {
                 console.error(error)
-                res.writeHead(500,headers);
-                 res.end(JSON.stringify({message:"erreur lors de la modification du nom de ce groupe"}))
+                res.writeHead(500, headers);
+                res.end(JSON.stringify({message: "Erreur lors de la modification"}))
             }
             return;
-            //
         }
+
+        // 1. NOUVELLE ROUTE : Récupérer les membres d'un groupe spécifique (GET /groups/:id/members)
+        if (req.url.startsWith('/groups/') && req.url.endsWith('/members') && req.method === 'GET') {
+            try {
+                const partiUrl = req.url.split('/');
+                const id_tontine = parseInt(partiUrl[2]);
+
+                const [rows] = await db.query(`
+                    SELECT u.user_id, u.nom, u.telephone, tm.ordre_beneficiaire 
+                    FROM tontines_members tm
+                    JOIN users u ON tm.user_id = u.user_id
+                    WHERE tm.id_tontine = ?
+                    ORDER BY tm.ordre_beneficiaire ASC`, 
+                    [id_tontine]
+                );
+
+                res.writeHead(200, headers);
+                res.end(JSON.stringify(rows));
+            } catch (error) {
+                console.error(error);
+                res.writeHead(500, headers);
+                res.end(JSON.stringify({ message: "Erreur lors de la récupération des membres du groupe" }));
+            }
+            return;
+        }
+
+        // 2. NOUVELLE ROUTE : Retirer un membre d'une tontine (DELETE /groups/:id_tontine/members/:user_id)
+        if (req.url.startsWith('/groups/') && req.url.includes('/members/') && req.method === 'DELETE') {
+            try {
+                const partiUrl = req.url.split('/');
+                const id_tontine = parseInt(partiUrl[2]);
+                const user_id = parseInt(partiUrl[4]);
+
+                const [resultat] = await db.query(
+                    'DELETE FROM tontines_members WHERE id_tontine = ? AND user_id = ?', 
+                    [id_tontine, user_id]
+                );
+
+                if (resultat.affectedRows === 0) {
+                    res.writeHead(404, headers);
+                    return res.end(JSON.stringify({ message: "Association membre/groupe introuvable" }));
+                }
+
+                res.writeHead(200, headers);
+                res.end(JSON.stringify({ message: "Membre retiré du groupe avec succès" }));
+            } catch (error) {
+                console.error(error);
+                res.writeHead(500, headers);
+                res.end(JSON.stringify({ message: "Erreur lors du retrait du membre" }));
+            }
+            return;
+        }
+
     //erreur 404
     res.writeHead(404, headers);
     res.end(JSON.stringify({ erreur: "Aucun groupe trouvee ou erreur" }));

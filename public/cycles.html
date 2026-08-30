@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Boxicons pour les icônes -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/public/css/style.css">
     <title>Gestion des Cycles - Tontine Manager</title>
 </head>
 <body class="dashboard-layout">
 
-    <!-- Voile d'arrière plan -->
     <div class="overlay" id="bg-add-cycle"></div>
     
-    <!-- Panneau Latéral (Ajout / Modification) -->
     <div class="side-panel" id="panel-add-cycle">
         <div class="panel-header">
             <h2>Nouveau Cycle</h2>
@@ -28,24 +25,21 @@
 
             <div class="form-group">
                 <label for="id_tontine">Sélectionner la Tontine</label>
-                <!-- Ce select sera rempli par le Javascript -->
                 <select id="id_tontine" name="id_tontine" required>
                     <option value="">-- Choisir une tontine --</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="statut">Statut</label>
+                <label for="statut">Statut du Cycle</label>
                 <select id="statut" name="statut">
                     <option value="ouvert">Ouvert</option>
-                    <option value="ferme">Fermé</option>
+                    <option value="Terminé">Terminé (Fermé)</option>
                 </select>
             </div>
 
-            <!-- On cache le bénéficiaire par défaut à la création, on le montrera à la modification -->
             <div class="form-group" id="group-beneficiaire" style="display: none;">
                 <label for="id_beneficiaire">Attribuer un Bénéficiaire (Gagnant)</label>
-                <!-- Ce select sera rempli par le Javascript avec la liste des membres -->
                 <select id="id_beneficiaire" name="id_beneficiaire">
                     <option value=""> Aucun bénéficiaire pour le moment </option>
                 </select>
@@ -58,22 +52,21 @@
         </form>
     </div>
 
-    <!-- Barre de navigation latérale -->
     <aside class="sidebar">
         <div class="logo">
             <h2>TONTINE MANAGER 💡</h2>
         </div>
         <nav>
             <ul>
-                <li><a href="/public/index.html">Dashboard</a></li>
-                <li><a href="/public/members.html">Membres</a></li>
-                <li><a href="/public/cycles.html" class="active">Cycles</a></li>
-                <li><a href="/public/groups.html">Groupes</a></li>
+                <li><a href="/public/index.html"><i class='bx bx-grid-alt'></i> Dashboard</a></li>
+                <li><a href="/public/members.html"><i class='bx bx-user'></i> Membres</a></li>
+                <li><a href="/public/cycles.html" class="active"><i class='bx bx-refresh'></i> Cycles</a></li>
+                <li><a href="/public/groups.html"><i class='bx bx-group'></i> Groupes</a></li>
+                <li><a href="/public/contributions.html"><i class='bx bx-money'></i> Cotisations</a></li>
             </ul>
         </nav>
     </aside>
 
-    <!-- Contenu Principal -->
     <main class="main-content">
         <header class="page-header">
             <div class="header-title">
@@ -89,7 +82,7 @@
             <div class="search-box">
                 <input type="text" placeholder="🔍 Rechercher un cycle...">
             </div>
-            <button class="btn-primary" id="btn-add-cycle">+ Créer un cycle</button>
+            <button class="btn-primary" id="btn-add-cycle"><i class='bx bx-plus'></i> Créer un cycle</button>
         </div>
 
         <div class="table-container">
@@ -105,13 +98,11 @@
                     </tr>
                 </thead>
                 <tbody class="list-cycles">
-                    <!-- Les cycles seront injectés ici par cycles.js -->
-                </tbody>
+                    </tbody>
             </table>
         </div>
     </main>
 
-    <!-- Script spécifique aux cycles -->
     <script type="module" src="/public/js/cycles.js"></script>
 </body>
 </html>

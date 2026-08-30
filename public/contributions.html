@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <title>Cotisations - Tontine Manager</title>
+</head>
+<body class="dashboard-layout">
+
+    <div class="overlay" id="bg-add-cotisation"></div>
+    
+    <div class="side-panel" id="panel-add-cotisation">
+        <div class="panel-header">
+            <h2>Enregistrer un Paiement</h2>
+            <button class="btn-close" id="btn-close-panel">✕</button>
+        </div>
+        
+        <form class="panel-form" id="form-add-cotisation">
+            <div class="form-group">
+                <label for="id_cycle">Sélectionner le Cycle en cours</label>
+                <select id="id_cycle" required style="padding: 10px; border: 1px solid var(--border-light); border-radius: var(--radius-sm);">
+                    <option value="">-- Choisir un cycle --</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="user_id">Sélectionner le Membre</label>
+                <select id="user_id" required style="padding: 10px; border: 1px solid var(--border-light); border-radius: var(--radius-sm);">
+                    <option value="">-- Choisir un membre --</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="montant">Montant Versé (FCFA)</label>
+                <input type="number" id="montant" placeholder="Ex: 10000" required>
+            </div>
+
+            <div class="panel-footer">
+                <button type="button" class="btn-secondary" id="btn-cancel">Annuler</button>
+                <button type="submit" class="btn-primary">Valider le versement</button>
+            </div>
+        </form>
+    </div>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>TONTINE MANAGER 💡</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/public/index.html"><i class='bx bx-grid-alt'></i> Dashboard</a></li>
+                <li><a href="/public/members.html"><i class='bx bx-user'></i> Membres</a></li>
+                <li><a href="/public/cycles.html"><i class='bx bx-refresh'></i> Cycles</a></li>
+                <li><a href="/public/groups.html"><i class='bx bx-group'></i> Groupes</a></li>
+                <li><a href="/public/contributions.html" class="active"><i class='bx bx-money'></i> Cotisations</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="page-header">
+            <div class="header-title">
+                <button id="btn-menu-mobile" class="menu-toggle"><i class='bx bx-menu'></i></button>
+                <div>
+                    <h1>Suivi des Cotisations</h1>
+                    <p>Consultez l'historique des dépôts et enregistrez les paiements des membres...</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="search-add">
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Rechercher un paiement...">
+            </div>
+            <button class="btn-primary" id="btn-add-cotisation"><i class='bx bx-plus'></i> Enregistrer une cotisation</button>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID PAIEMENT</th>
+                        <th>MONTANT</th>
+                        <th>DATE DE VERSEMENT</th>
+                        <th>ID MEMBRE</th>
+                        <th>ID CYCLE</th>
+                    </tr>
+                </thead>
+                <tbody class="list-contributions">
+                    </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script type="module" src="/public/js/contributions.js"></script>
+</body>
+</html>

@@ -5,7 +5,7 @@ async function handleStats(req, res, headers) {
     if (req.method === 'GET' && req.url === '/statistiques') {
         try {
             // 1. Total des membres
-            const [membres] = await db.query('SELECT COUNT(user_id) AS total FROM tontines_members');
+            const [membres] = await db.query('SELECT COUNT(user_id) AS total FROM users');
             const totalMembres = membres[0].total;
 
             const [caisse] = await db.query('SELECT IFNULL(SUM(montant), 0) AS total_caisse FROM cotisation');

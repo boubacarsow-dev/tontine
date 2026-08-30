@@ -4,12 +4,24 @@ const parser = require('../utils/bodyParser');
 //
 async function handleCycles(req,res,headers) {
       //route get
-             if (req.method === 'GET' && req.url === '/cycles') {
+      if (req.method === 'GET' && req.url === '/cycles') {
          try {
-             // 
-             const [rows] = await db.query('SELECT * FROM cycles');
+             // LEFT JOIN pour avoir le nom du gagnant s'il existe, et le nom de la tontine parent
+             const [rows] = await db.query(`
+                 SELECT 
+                     c.id_cycle, 
+                     c.nom, 
+                     c.statut, 
+                     c.id_beneficiaire, 
+                     c.id_tontine,
+                     u.nom AS nom_beneficiaire,
+                     t.nom AS nom_tontine
+                 FROM cycles c
+                 LEFT JOIN users u ON c.id_beneficiaire = u.user_id
+                 JOIN tontines t ON c.id_tontine = t.id_tontine
+                 ORDER BY c.id_cycle DESC
+             `);
      
-             // 
              res.writeHead(200, headers);
              res.end(JSON.stringify(rows)); 
          } catch (error) {
@@ -19,6 +31,8 @@ async function handleCycles(req,res,headers) {
          }
          return;
      }
+
+     
   //post
   if(req.method === 'POST' && req.url === '/cycles'){
     try {

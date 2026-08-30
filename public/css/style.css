@@ -343,3 +343,10 @@ nav a:hover {
         display: block; 
     }
 }
+
+/* ajout de css */
+nav a, .btn-primary, .btn-edit, .btn-delete {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* */
+}

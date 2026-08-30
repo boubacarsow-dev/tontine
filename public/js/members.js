@@ -1,3 +1,6 @@
+if (!localStorage.getItem("user")) {
+    window.location.href = "/public/landing.html";
+}
 import { API } from "./api.js";
 
 const btnMenuMobile = document.getElementById("btn-menu-mobile");

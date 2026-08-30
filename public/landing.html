@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue sur Tontine Manager</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <style>
+        .landing-body {
+            background: linear-gradient(135deg, #F4F7F6 0%, #E9EFF1 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 80px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo h2 {
+            font-size: 22px;
+            color: var(--bg-sidebar);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 160px 20px 80px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-section h1 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--bg-sidebar);
+            margin-bottom: 20px;
+        }
+
+        .hero-section h1 span {
+            color: var(--color-primary);
+        }
+
+        .hero-section p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-cta-primary {
+            background-color: var(--color-primary);
+            color: var(--text-white);
+            padding: 15px 35px;
+            border-radius: var(--radius-pill);
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-cta-primary:hover {
+            background-color: var(--color-primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-cta-secondary {
+            background-color: transparent;
+            color: var(--bg-sidebar);
+            border: 2px solid var(--bg-sidebar);
+            padding: 8px 20px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s, color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-cta-secondary:hover {
+            background-color: var(--bg-sidebar);
+            color: var(--text-white);
+        }
+
+        .features-section {
+            padding: 60px 80px 100px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: 40px 30px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-card);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card i {
+            font-size: 40px;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 25px; }
+            .hero-section h1 { font-size: 32px; }
+            .cta-group { flex-direction: column; width: 100%; gap: 15px; }
+            .btn-cta-primary, .btn-cta-secondary { text-align: center; width: 100%; justify-content: center; }
+            .features-section { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body class="landing-body">
+
+    <header class="navbar">
+        <div class="logo">
+            <h2><i class='bx bx-analyse'></i> TONTINE MANAGER</h2>
+        </div>
+        <div class="nav-buttons">
+            <a href="/public/auth.html" class="btn-cta-secondary"><i class='bx bx-log-in'></i> Se connecter</a>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <h1>Gerez vos epargnes collectives en toute <span>securite</span> et simplicite</h1>
+        <p>Decouvrez la plateforme moderne de gestion de tontines. Suivez les cotisations de vos membres, planifiez les tours de table et optimisez vos fonds en temps reel.</p>
+        
+        <div class="cta-group">
+            <a href="/public/auth.html" class="btn-cta-primary"><i class='bx bx-user-plus'></i> Essayez Tontine Manager gratuitement</a>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h2 style="font-size: 32px; color: var(--bg-sidebar);">Pourquoi choisir notre solution ?</h2>
+            <p style="color: var(--text-muted); margin-top: 10px;">Un espace securise pour piloter vos tontines intelligemment.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class='bx bx-lock-alt'></i>
+                <h3>Espace Protege</h3>
+                <p>Creez votre compte personnel avec votre numero de telephone pour securiser l'acces a vos informations et vos tontines.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class='bx bx-group'></i>
+                <h3>Suivi des Groupes</h3>
+                <p>Creez vos groupes, definissez les montants et les frequences de paiement, et affectez vos membres en quelques clics.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class='bx bx-refresh'></i>
+                <h3>Cycles Automatises</h3>
+                <p>Gerez sereinement les tours de tontine. Notre systeme valide les conditions d'attribution avant de designer les beneficiaires.</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

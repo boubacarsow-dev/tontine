@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <title>Connexion / Inscription</title>
+    <style>
+        .auth-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-card);
+        }
+        .auth-tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--border-light);
+        }
+        .auth-tab {
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--text-muted);
+        }
+        .auth-tab.active {
+            color: var(--color-primary);
+            border-bottom: 3px solid var(--color-primary);
+        }
+    </style>
+</head>
+<body style="background-color: var(--bg-app);">
+
+    <div class="auth-container">
+        <div class="auth-tabs">
+            <div class="auth-tab active" id="tab-login">Connexion</div>
+            <div class="auth-tab" id="tab-register">Inscription</div>
+        </div>
+
+        <form id="form-login" class="panel-form">
+            <div class="form-group">
+                <label for="login-tel">Numéro de Téléphone</label>
+                <input type="tel" id="login-tel" placeholder="+225 07..." required>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px;">Se connecter</button>
+        </form>
+
+        <form id="form-register" class="panel-form" style="display: none;">
+            <div class="form-group">
+                <label for="reg-nom">Nom Complet</label>
+                <input type="text" id="reg-nom" placeholder="Ex: Koffi Kouassi" required>
+            </div>
+            <div class="form-group">
+                <label for="reg-tel">Numéro de Téléphone</label>
+                <input type="tel" id="reg-tel" placeholder="+225 07..." required>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px;">Créer un compte</button>
+        </form>
+    </div>
+
+    <script type="module" src="/public/js/auth.js"></script>
+</body>
+</html>
