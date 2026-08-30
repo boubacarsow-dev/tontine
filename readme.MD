@@ -6,6 +6,23 @@ Une tontine est un système d'épargne collective où un groupe de membres cotis
 
 ---
 
+## 📸 Aperçu
+
+<p align="center">
+  <img src="screenshots/landing.png" alt="Page d'accueil" width="800"/>
+</p>
+
+<p align="center">
+  <img src="screenshots/dashboard.png" alt="Tableau de bord" width="400"/>
+  <img src="screenshots/groupes.png" alt="Gestion des groupes" width="400"/>
+</p>
+
+<p align="center">
+  <img src="screenshots/cotisations.png" alt="Suivi des cotisations" width="800"/>
+</p>
+
+---
+
 ## ✨ Fonctionnalités
 
 -  **Gestion des groupes** — création et suivi des groupes de tontine
@@ -47,6 +64,7 @@ tontine/
 │   ├── index.html
 │   └── membres.html
 ├── routes/              # Logique des routes de l'API (groupes, membres, cycles...)
+├── screenshots/         # Captures d'écran utilisées dans le README
 ├── utils/
 │   └── bodyParser.js    # Parsing manuel du corps des requêtes HTTP
 ├── .gitignore
