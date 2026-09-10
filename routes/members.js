@@ -105,7 +105,7 @@ async function handleMembers(req, res, headers) {
         return;
     }
     
-    // --- 404 : Action inconnue ---
+    //  404 : 
     res.writeHead(404, headers);
     res.end(JSON.stringify({ erreur: "Action non reconnue pour les membres" }));
 }

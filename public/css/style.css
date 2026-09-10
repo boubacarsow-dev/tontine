@@ -338,7 +338,7 @@ nav a:hover {
         overflow-x: auto;
     }
 
-    /*  */
+    
     .menu-toggle {
         display: block; 
     }
@@ -349,4 +349,21 @@ nav a, .btn-primary, .btn-edit, .btn-delete {
     display: inline-flex;
     align-items: center;
     gap: 8px; /* */
+}
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box i {
+    position: absolute;
+    left: 15px;
+    font-size: 20px;
+    color: #777;
+    pointer-events: none;
+}
+
+.search-box input {
+    padding-left: 45px;
 }

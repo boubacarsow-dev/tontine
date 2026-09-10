@@ -1,4 +1,4 @@
-const db = require('../db/database'); // Les '..' pour sortir du dossier routes
+const db = require('../db/database'); 
 const parser = require('../utils/bodyParser');
 async function handleContribution(req,res,headers) {
     //route get

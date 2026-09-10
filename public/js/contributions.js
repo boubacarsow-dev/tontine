@@ -47,7 +47,7 @@ if (bg_overlay) bg_overlay.addEventListener("click", togglePanel);
 async function chargerListesOptions() {
     try {
         const cycles = await API.get("/cycles");
-        selectCycle.innerHTML = '<option value="">-- Choisir un cycle --</option>';
+        selectCycle.innerHTML = '<option value=""> Choisir un cycle </option>';
         cycles.forEach(c => {
             if (c.statut === 'ouvert') {
                 selectCycle.innerHTML += `<option value="${c.id_cycle}">${c.nom}</option>`;
@@ -81,7 +81,7 @@ async function chargerCotisations() {
                 day: "numeric", month: "long", year: "numeric"
             });
 
-            // Remplace la ligne correspondante dans la boucle de public/js/contributions.js par :
+            
 let ligne = `
     <tr>
         <td>#${cotis.id_cotisation}</td>
