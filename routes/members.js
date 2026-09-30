@@ -1,4 +1,4 @@
-// --- FICHIER : ./routes/members.js ---
+// ./routes/members.js ---
 const db = require('../db/database');
 const parser = require('../utils/bodyParser');
 
